@@ -75,4 +75,4 @@ class About extends Component {
         );
     }
 }
-export default connect(mapsStateToProps)(About);
+export default connect(mapStateToProps)(About);
