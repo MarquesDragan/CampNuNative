@@ -135,7 +135,11 @@ class CampsiteInfo extends Component {
     constructor(props){
         super(props);
         this.state = {
-            showModal: false
+            favorite: false,
+            showModal: false,
+            rating: 5,
+            author: "",
+            text: ""
         };
     }
 
@@ -148,14 +152,12 @@ class CampsiteInfo extends Component {
         this.toggleModal();
     }
 
-    resetForm() {
+    resetForm(){
         this.setState({
-            showModal: false,
             rating: 5,
             author: "",
-            text: "",
-            value: ""
-        });
+            text: ""
+        })
     }
 
     markFavorite(campsiteId) {
@@ -194,17 +196,16 @@ class CampsiteInfo extends Component {
                         />
                         <Input 
                             placeholder='Author'
-                            leftIcon={{name: 'verified-user'}}
+                            leftIcon={{ type: 'font-awesome', name: 'user-o' }}
                             leftIconContainerStyle={{paddingRight:10}}
-                            onChangeText={(text) => this.setState({ name: text })} 
-                            value={this.state.value}
+                            onChangeText={(author)=>this.setState({author: author})} 
                         />
 
                         <Input 
                             placeholder='Comment'
-                            leftIcon={{name: 'comment'}}
+                            leftIcon={{type: 'font-awesome', name:'comment-o' }}
                             leftIconContainerStyle={{paddingRight:10}}
-                            onChangeText={(text) => this.setState({ comment: text })} 
+                            onChangeText={(text)=>this.setState({text: text})} 
                         />
                         <View>
                             <Button
@@ -217,7 +218,11 @@ class CampsiteInfo extends Component {
                             />
                         </View>
                         <View style={{margin:10}}>
-                            <Button onPress={() => this.toggleModal()}
+                            <Button
+                                onPress={() => {
+                                    this.resetForm();
+                                    this.toggleModal();
+                                }}
                                 color='#808080'
                                 title='Cancel'
                             />

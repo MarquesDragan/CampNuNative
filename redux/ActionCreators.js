@@ -11,14 +11,16 @@ export const fetchComments = () => dispatch => {
                     error.response = response;
                     throw error;
                 }
-            },
+        },
             error => {
                 const errMess = new Error(error.message);
                 throw errMess;
             })
         .then(response => response.json())
         .then(comments => dispatch(addComments(comments)))
-        .catch(error => dispatch(commentsFailed(error.message)));
+        .catch(error => dispatch(commentsFailed(error.message))
+    );
+        
 };
 
 export const commentsFailed = errMess => ({
