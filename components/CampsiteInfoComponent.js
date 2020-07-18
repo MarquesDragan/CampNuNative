@@ -189,6 +189,8 @@ class CampsiteInfo extends Component {
                     <View style={styles.modal}>
                         <Rating
                             showRating
+                            type='star'
+                            fractions={0}
                             startingValue={this.state.rating}
                             imageSize= {40}
                             onFinishRating={(rating)=>this.setState({rating: rating})} 
@@ -198,21 +200,23 @@ class CampsiteInfo extends Component {
                             placeholder='Author'
                             leftIcon={{ type: 'font-awesome', name: 'user-o' }}
                             leftIconContainerStyle={{paddingRight:10}}
-                            onChangeText={(author)=>this.setState({author: author})} 
+                            onChangeText={(author)=>this.setState({author: author})}
+                            value={this.state.author}
                         />
 
                         <Input 
                             placeholder='Comment'
                             leftIcon={{type: 'font-awesome', name:'comment-o' }}
                             leftIconContainerStyle={{paddingRight:10}}
-                            onChangeText={(text)=>this.setState({text: text})} 
+                            onChangeText={(text)=>this.setState({text: text})}
+                            value={this.state.text} 
                         />
-                        <View>
+                        <View style={{margin: 10}}>
                             <Button
                             title='Submit'
                             color='#5637DD'
                             onPress={()=>{
-                                this.handleComment(); 
+                                this.handleComment(campsiteId); 
                                 this.resetForm();
                                 }}
                             />
